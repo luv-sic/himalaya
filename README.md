@@ -1,6 +1,8 @@
 # Himalaya
 
-> Parse HTML into JSON, add support for vue template
+> Parse HTML into JSON
+
+> [Add support for Vue template](https://github.com/andrejewski/himalaya/issues/105)
 
 [![npm](https://img.shields.io/npm/v/himalaya.svg)](https://www.npmjs.com/package/himalaya)
 [![Build Status](https://travis-ci.org/andrejewski/himalaya.svg?branch=master)](https://travis-ci.org/andrejewski/himalaya)
