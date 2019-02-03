@@ -19,6 +19,9 @@ test('stringify() should work for void elements', t => {
 
   const link = "<link rel='stylesheet' href='file.css'>"
   t.is(stringify(parse(link)), link)
+
+  const customTag = "<div>abcdef</div><custom-block id='custom' />"
+  t.is(stringify(parse(customTag)), customTag)
 })
 
 test('stringify() should build the class attribute properly', t => {

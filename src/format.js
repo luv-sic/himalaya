@@ -25,6 +25,9 @@ export function format (nodes, options) {
         children: format(node.children, options)
       }
       : { type, content: node.content }
+    if (type === 'element' && node.void) {
+      outputNode.void = true
+    }
     if (options.includePositions) {
       outputNode.position = node.position
     }

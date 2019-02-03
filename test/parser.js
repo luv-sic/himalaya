@@ -41,7 +41,7 @@ test('parser() should return nodes', t => {
 })
 
 test('parser() should not nest within void tags', t => {
-  const str = '<div>abc<img/>def</div>'
+  const str = '<div>abc<img/>def</div><custom-block />'
   const tokens = lexer(str, lexerOptions)
   const nodes = parser(tokens, { voidTags: 'img', closingTags: [] })
   t.deepEqual(nodes, [
@@ -66,7 +66,8 @@ test('parser() should not nest within void tags', t => {
           position: {
             start: ps(8),
             end: ps(14)
-          }
+          },
+          void: true
         },
         {
           type: 'text',
@@ -79,8 +80,19 @@ test('parser() should not nest within void tags', t => {
       ],
       position: {
         start: ps(0),
-        end: ps(str.length)
+        end: ps(23)
       }
+    },
+    {
+      type: 'element',
+      tagName: 'custom-block',
+      attributes: [],
+      children: [],
+      position: {
+        start: ps(23),
+        end: ps(str.length)
+      },
+      void: true
     }
   ])
 })

@@ -98,7 +98,14 @@ export function parse (state) {
     let attrToken
     while (cursor < len) {
       attrToken = tokens[cursor]
-      if (attrToken.type === 'tag-end') break
+      if (attrToken.type === 'tag-end') {
+        // https://vuejs.org/v2/style-guide/index.html#Self-closing-components-strongly-recommended
+        // 支持Vue自闭合标签，tag + type=tag-end&close=true时，为 void 元素，此时生成的AST Nde上 void 为 true
+        if (attrToken.close) {
+          tagToken.void = true
+        }
+        break
+      }
       attributes.push(attrToken.content)
       cursor++
     }
@@ -116,6 +123,11 @@ export function parse (state) {
       children,
       position
     }
+
+    if (tagToken.void) {
+      elementNode.void = true
+    }
+
     nodes.push(elementNode)
 
     const hasChildren = !(attrToken.close || arrayIncludes(options.voidTags, tagName))
