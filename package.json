@@ -1,7 +1,7 @@
 {
   "name": "@luvsic/himalaya",
   "description": "HTML to JSON parser",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": "Chris Andrejewski <christopher.andrejewski@gmail.com>",
   "ava": {
     "require": [
